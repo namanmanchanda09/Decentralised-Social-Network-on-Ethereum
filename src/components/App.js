@@ -4,7 +4,12 @@ import logo from '../logo.png';
 import './App.css';
 
 class App extends Component {
-  
+
+  async componentWillMount(){
+    await this.loadWeb3();
+    await this.loadBlockchainData();
+  }
+
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
@@ -16,6 +21,13 @@ class App extends Component {
     else {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
+  }
+
+  async loadBlockchainData(){
+    const web3 = window.web3
+    //Load Account
+    const accounts = await web3.eth.getAccounts();
+    console.log(accounts);
   }
 
   render() {
