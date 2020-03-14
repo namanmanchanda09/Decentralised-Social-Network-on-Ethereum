@@ -35,7 +35,10 @@ class App extends Component {
     const networkData=SocialNetwork.networks[networkId];
     if(networkData) {
       const socialNetwork = new web3.eth.Contract(SocialNetwork.abi,networkData.address)
-      console.log(socialNetwork);
+      this.setState({socialNetwork});
+      const postCount = await socialNetwork.methods.postCount().call();
+      this.setState({postCount});
+      console.log(postCount);
     }else{
       window.alert('Contract not deployed to blockchain');
     }
@@ -45,7 +48,9 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state={
-      account:''
+      account:'',
+      socialNetwork:null,
+      postCount:0
     }
 
   }
