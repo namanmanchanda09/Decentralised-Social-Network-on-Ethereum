@@ -10,12 +10,20 @@ contract SocialNetwork{
         uint tipAmount;
         address author;
     }
+
+    event PostCreated(
+        uint id,
+        string content,
+        uint tipAmount,
+        address author
+    );
     constructor() public{
         name = "Dapp University Social Network";
     }
     function createPost(string memory _content)public {
         postCount ++;
         posts[postCount] = Post(postCount,_content,0,msg.sender);
+        emit PostCreated(postCount,_content,0,msg.sender);
     }
 }
 
