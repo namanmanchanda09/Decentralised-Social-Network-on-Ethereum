@@ -21,6 +21,7 @@ contract SocialNetwork{
         name = "Dapp University Social Network";
     }
     function createPost(string memory _content)public {
+        require(bytes(_content).length > 0,'Post can not be empty');
         postCount ++;
         posts[postCount] = Post(postCount,_content,0,msg.sender);
         emit PostCreated(postCount,_content,0,msg.sender);
