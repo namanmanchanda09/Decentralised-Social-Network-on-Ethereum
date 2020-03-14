@@ -4,7 +4,7 @@ require('chai')
     .use(require('chai-as-promised'))
     .should()
 
-contract('SocialNetwork',(accounts)=>{
+contract('SocialNetwork',([deployer,author,tipper])=>{
     let socialNetwork
     before(async ()=>{
         socialNetwork = await SocialNetwork.deployed()
@@ -27,8 +27,11 @@ contract('SocialNetwork',(accounts)=>{
     })
 
     describe('posts',async ()=>{
+        let result,postCount;
         it('creates posts',async ()=>{
-            
+            result = await socialNetwork.createPost('This is my first post',{from:author})
+            postCount = await socialNetwork.postCount()
+            assert.equal(postCount,1);
         })
         it('lists posts',async ()=>{
 
@@ -39,4 +42,6 @@ contract('SocialNetwork',(accounts)=>{
 
     })
 })
+
+
 
