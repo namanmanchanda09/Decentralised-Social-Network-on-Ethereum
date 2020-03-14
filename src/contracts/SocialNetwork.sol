@@ -38,10 +38,12 @@ contract SocialNetwork{
         address(_author).transfer(msg.value);
         _post.tipAmount = _post.tipAmount + msg.value;
         posts[_id] = _post;
-
+        emit PostTipped(postCount,_post.content,_post.tipAmount,_author);
 
     }
 }
+
+
 
 
 
