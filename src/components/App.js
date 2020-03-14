@@ -27,7 +27,16 @@ class App extends Component {
     const web3 = window.web3
     //Load Account
     const accounts = await web3.eth.getAccounts();
-    console.log(accounts);
+
+    this.setState({account:accounts[0]})
+  }
+
+  constructor(props){
+    super(props)
+    this.state={
+      account:''
+    }
+
   }
 
   render() {
