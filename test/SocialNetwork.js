@@ -69,7 +69,8 @@ contract('SocialNetwork',([deployer,author,tipper])=>{
             tipAmount = new web3.utils.BN(tipAmount);
             const expectedBalance = oldAuthorBalance.add(tipAmount);
             assert.equal(newAuthorBalance.toString(),expectedBalance.toString());
-            
+            //FAILURE
+            await socialNetwork.tipPost(99,{from:tipper,value:web3.utils.toWei('1','ether')}).should.be.rejected;
         })
 
     })

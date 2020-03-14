@@ -33,6 +33,7 @@ contract SocialNetwork{
         emit PostCreated(postCount,_content,0,msg.sender);
     }
     function tipPost(uint _id) public payable{
+        require(_id>0 && _id<=postCount,'The ID should be valid');
         Post memory _post = posts[_id];
         address payable _author = _post.author;
         address(_author).transfer(msg.value);
