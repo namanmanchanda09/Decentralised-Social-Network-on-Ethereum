@@ -52,7 +52,8 @@ contract('SocialNetwork',([deployer,author,tipper])=>{
 
         })
         it('allows users to tip posts',async ()=>{
-
+            result = await socialNetwork.tipPost(postCount,{from:tipper,value:web3.utils.toWei('1','ether')})
+            
         })
 
     })
