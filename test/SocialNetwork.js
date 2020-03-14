@@ -28,10 +28,12 @@ contract('SocialNetwork',([deployer,author,tipper])=>{
 
     describe('posts',async ()=>{
         let result,postCount;
-        it('creates posts',async ()=>{
-            result = await socialNetwork.createPost('This is my first post',{from:author})
+        before(async ()=>{
+            result = await socialNetwork.createPost('This is my first post',{from:author});
             postCount = await socialNetwork.postCount()
-            //SUCCESS
+        })
+        it('creates posts',async ()=>{
+           //SUCCESS
             assert.equal(postCount,1);
             const event = result.logs[0].args
             assert.equal(event.id.toNumber(),postCount.toNumber(),'id is Correct');
@@ -42,6 +44,11 @@ contract('SocialNetwork',([deployer,author,tipper])=>{
             await socialNetwork.createPost('',{from:author}).should.be.rejected;
         })
         it('lists posts',async ()=>{
+            const post = await socialNetwork.posts(postCount);
+            assert.equal(post.id.toNumber(),postCount.toNumber(),'id is Correct');
+            assert.equal(post.content,'This is my first post','content is correct');
+            assert.equal(post.tipAmount,'0','tip amount is correct');
+            assert.equal(post.author,author,'author is correct');
 
         })
         it('allows users to tip posts',async ()=>{
@@ -50,6 +57,8 @@ contract('SocialNetwork',([deployer,author,tipper])=>{
 
     })
 })
+
+
 
 
 
