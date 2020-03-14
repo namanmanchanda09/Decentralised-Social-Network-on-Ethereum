@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
 import Navbar from './Navbar'
+import SocialNetwork from '../abis/SocialNetwork.json'
 import logo from '../logo.png';
 import './App.css';
 
@@ -30,6 +31,15 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
 
     this.setState({account:accounts[0]})
+    const networkId = await web3.eth.net.getId();
+    const networkData=SocialNetwork.networks[networkId];
+    if(networkData) {
+      const socialNetwork = new web3.eth.Contract(SocialNetwork.abi,networkData.address)
+      console.log(socialNetwork);
+    }else{
+      window.alert('Contract not deployed to blockchain');
+    }
+
   }
 
   constructor(props){
