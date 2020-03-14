@@ -28,7 +28,7 @@ contract('SocialNetwork',(accounts)=>{
 
     describe('posts',async ()=>{
         it('creates posts',async ()=>{
-
+            
         })
         it('lists posts',async ()=>{
 
@@ -36,7 +36,7 @@ contract('SocialNetwork',(accounts)=>{
         it('allows users to tip posts',async ()=>{
 
         })
-            
+
     })
 })
 
