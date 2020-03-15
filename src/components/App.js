@@ -78,16 +78,20 @@ class App extends Component {
                     return(
                       <div className="card mb-4" key={key}>
                         <div className="card-header">
-                          <p className="card-text">Some quick text</p>
-
+                          <small className="text-muted">Post header</small>
                         </div>
+                        <ul id="postList" className="list-group list-group-flush">
+                          <li className="list-group-item">
+                            <p>Post Body</p>
+                          </li>
+                          <li key={key} className="list-group-item py-2">
+                            <p>Post Footer</p>
+                          </li>
+                        </ul>
                       </div>
-                    )
+                      )
                   })
                 }
-
-
-  
               </div>
             </main>
           </div>
@@ -98,5 +102,7 @@ class App extends Component {
 }
 
 export default App;
+
+
 
 
