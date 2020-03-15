@@ -82,7 +82,7 @@ class App extends Component {
                           <img className="ml-2"
                             width='30'
                             height='30'
-                            src={`data:image/png;base64,${new Identicon(this.state.account, 30).toString()}`}
+                            src={`data:image/png;base64,${new Identicon(post.author, 30).toString()}`}
                             alt="Avatar"
                           />
                           <small className="text-muted">{post.author}</small>
