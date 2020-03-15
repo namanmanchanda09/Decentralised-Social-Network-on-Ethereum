@@ -63,8 +63,14 @@ class App extends Component {
     .once('receipt',(receipt)=>{
       this.setState({loading:false})
     })
+  }
 
-    
+  tipPost(id,tipAmount){
+    this.setState({loading:true})
+    this.state.socialNetwork.methods.tipPost(id).send({from:this.state.account,value:tipAmount})
+    .once('receipt',(receipt)=>{
+      this.setState({loading:false})
+    })
   }
 
   constructor(props){
@@ -77,6 +83,7 @@ class App extends Component {
       loading: true
     }
     this.createPost = this.createPost.bind(this);
+    this.tipPost = this.tipPost.bind(this);
 
   }
 
@@ -91,6 +98,7 @@ class App extends Component {
         : <Main
         posts={this.state.posts}
         createPost={this.createPost}
+        tipPost = {this.tipPost}
          />
       }
         
