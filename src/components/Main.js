@@ -9,11 +9,16 @@ class Main extends Component{
               <main role="main" className="col-lg-12 ml-auto mr-auto" style={{maxWidth:'500px'}}>
                 <div className="content mr-auto ml-auto">
                     <p>&nbsp;</p>
-                    <form>
+                    <form onSubmit={(event)=>{
+                        event.preventDefault()
+                        const content = this.postContent.value
+                        this.props.createPost(content)
+                    }}>
                         <div className="form-group mr-sm-2">
                             <input 
                             id="postContent"
                             type="text"
+                            ref={(input)=>{this.postContent=input}}
                             className="form-control"
                             placeholder="What's on your mind?"
                             required />
@@ -21,7 +26,7 @@ class Main extends Component{
                         </div>
                         <button type="submit" className="btn btn-primary btn-block">Share</button>
                     </form>
-
+                    <p>&nbsp;</p>
 
 
 
