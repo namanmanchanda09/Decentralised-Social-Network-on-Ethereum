@@ -51,6 +51,9 @@ class App extends Component {
       }
       this.setState({loading:false})
       console.log({posts:this.state.posts});
+      this.setState({
+        posts:this.state.posts.sort((a,b)=>b.tipAmount - a.tipAmount)
+      })
     }else{
       window.alert('Contract not deployed to blockchain');
     }
