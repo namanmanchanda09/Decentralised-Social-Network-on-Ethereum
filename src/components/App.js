@@ -49,6 +49,7 @@ class App extends Component {
           posts : [...this.state.posts,post]
         })
       }
+      this.setState({loading:false})
       console.log({posts:this.state.posts});
     }else{
       window.alert('Contract not deployed to blockchain');
